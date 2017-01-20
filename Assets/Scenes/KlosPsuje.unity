@@ -270,11 +270,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4469645243535906, guid: 517583acaac5b7441b3b8e38d22ed2e4, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -0.38
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4469645243535906, guid: 517583acaac5b7441b3b8e38d22ed2e4, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0.08
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4469645243535906, guid: 517583acaac5b7441b3b8e38d22ed2e4, type: 2}
       propertyPath: m_LocalPosition.z
@@ -298,6 +298,18 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4469645243535906, guid: 517583acaac5b7441b3b8e38d22ed2e4, type: 2}
       propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4469645243535906, guid: 517583acaac5b7441b3b8e38d22ed2e4, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4469645243535906, guid: 517583acaac5b7441b3b8e38d22ed2e4, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4469645243535906, guid: 517583acaac5b7441b3b8e38d22ed2e4, type: 2}
+      propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -345,7 +357,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SpawnInterval: 1
-  SpawnArea: {x: 4, y: 4}
+  SpawnArea: {x: 8, y: 4}
   Items:
   - {fileID: 1738087298216972, guid: 517583acaac5b7441b3b8e38d22ed2e4, type: 2}
   SpawnedItems: []
