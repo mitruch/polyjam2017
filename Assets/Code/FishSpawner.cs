@@ -21,23 +21,24 @@ public class FishSpawner : MonoBehaviour
 
     void Update()
     {
-        // if (Input.GetKeyUp(KeyCode.Space))
-        // {
-        //     Debug.Log("Poland can into space");
-        // }
+        float Speed = 1.0f;
+        for (int i = 0; i < SpawnedItems.Count; i++)
+        {
+            SpawnedItems[i].transform.Translate(new Vector3(-Speed, 0.0f, 0.0f));
+        }
     }
 
     void SpawnItem()
     {
         GameObject ItemPrefab = Items[Random.Range(0, Items.Count)];
-        Vector3 SpawnPosition = new Vector3(
+        Vector3 SpawnPosition = transform.position + new Vector3(
             (Random.value * 2.0f - 1.0f) * SpawnArea.x,
             (Random.value * 2.0f - 1.0f) * SpawnArea.y,
             0.0f
         );
 
         GameObject Item = Instantiate(ItemPrefab, SpawnPosition, Quaternion.identity) as GameObject;
-        Item.GetComponent<SpriteRenderer>().color = Random.ColorHSV(0.0f, 1.0f);
+        Item.GetComponent<SpriteRenderer>().color = 4.0f * Random.ColorHSV(0.0f, 1.0f);
         SpawnedItems.Add(Item);
 
         Debug.Log("called " + SpawnPosition);
