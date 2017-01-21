@@ -7,8 +7,14 @@
 	}
 	SubShader
 	{
-		Tags { "RenderType"="Opaque" }
+		Tags{ "Queue" = "Transparent" "IgnoreProjector" = "True" "RenderType" = "Transparent" }
 		LOD 100
+
+		// ZWrite Off
+		Blend SrcAlpha OneMinusSrcAlpha
+
+		// Tags { "RenderType"="Opaque" }
+		// LOD 100
 
 		Pass
 		{
@@ -56,10 +62,10 @@
 				// col.xyz = 0.0;
 				// // i.uv.y = i.uv.y + 0.125 * sin(floor(fmod(10.0 * i.uv.x, 2.0 )) + 250.0 * _Time.x);
 				i.uv.y = i.uv.y + 0.125 * sin(10.0 * i.uv.x + 250.0 * _Time.x);
-				col.x = frac(8.0 * i.uv).y * pow(2.0 * i.uv.y, 0.2);
+				col.x = frac(4.0 * i.uv).y * pow(2.0 * i.uv.y, 0.2);
 				// // o.vertex.y -= 0.1 * sin(1000.0 * o.vertex.x + 500.0 * _Time.x);
 				col.x *= i.uv.x;
-				col *= 2.0 * _Stamina;
+				col.a = lerp(0.0, 1.0, step(length(col.rgb), _Stamina));
 				// apply fog
 				UNITY_APPLY_FOG(i.fogCoord, col);
 				return col;

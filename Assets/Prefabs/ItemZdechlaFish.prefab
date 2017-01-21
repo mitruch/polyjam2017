@@ -22,10 +22,9 @@ GameObject:
   - component: {fileID: 212824282376557524}
   - component: {fileID: 61801657698016772}
   - component: {fileID: 96830665249953158}
-  - component: {fileID: 114690622587991530}
   m_Layer: 0
-  m_Name: ItemFish
-  m_TagString: fish
+  m_Name: ItemZdechlaFish
+  m_TagString: wave
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -161,19 +160,6 @@ TrailRenderer:
     textureMode: 0
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
---- !u!114 &114690622587991530
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1738087298216972}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f06e94f5ce519ae48a14d5034b9bca3b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Items:
-  - {fileID: 1000013267560804, guid: 0ab55775e6458e944a57a5cf69c4b398, type: 2}
 --- !u!212 &212824282376557524
 SpriteRenderer:
   m_ObjectHideFlags: 1

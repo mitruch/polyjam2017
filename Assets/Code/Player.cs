@@ -15,6 +15,8 @@ public class Player : MonoBehaviour
     private new Rigidbody2D rigidbody2D;
     private int score;
 
+    GameObject FadeGameObject;
+
     void Start()
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
@@ -23,11 +25,24 @@ public class Player : MonoBehaviour
             volume: 1.0f,
             autoDestroy: false
         ).loop = true;
+
+        FadeGameObject = iTween.CameraFadeAdd();
     }
 
     void Die()
     {
+        iTween.CameraFadeTo(iTween.Hash(
+            "amount", 0.5f,
+            "time", 0.2f,
+            "oncomplete", "RestartLevel",
+            "oncompletetarget", gameObject
+        ));
+
         Debug.Log("die collision");
+    }
+
+    void RestartLevel()
+    {
         Application.LoadLevel(Application.loadedLevel);
     }
 
@@ -68,6 +83,12 @@ public class Player : MonoBehaviour
             rigidbody2D.velocity = Vector2.zero;
             rigidbody2D.AddForce(jumpForce, ForceMode2D.Impulse);
             // Debug.Log(score);
+
+            iTween.PunchPosition(Camera.main.gameObject, iTween.Hash(
+                "name", "shake" + Time.frameCount,
+                "amount", 1.0f * Vector3.down,
+                "time", 2.0f
+            ));
         }
 
         if (cat_screen_position.y > 1.0)
@@ -79,23 +100,32 @@ public class Player : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        AudioPlayer.Instance.PlayAtMainCamera(ScorePlusPlus,
-            volume: 1.0f,
-            // pitch: Random.Range(0.97f, 1.03f),
-            autoDestroy: true
-        ).loop = false;
+        if (collision.gameObject.tag == "fish")
+        {
+            AudioPlayer.Instance.PlayAtMainCamera(ScorePlusPlus,
+                volume: 1.0f,
+                // pitch: Random.Range(0.97f, 1.03f),
+                autoDestroy: true
+            ).loop = false;
 
-        Stamina = Mathf.Clamp01(Stamina + 1.0f);
-        score++;
-        Text.text = "Score: " + score;
+            Stamina = Mathf.Clamp01(Stamina + 1.0f);
+            score++;
+            Text.text = "Score: " + score;
 
-        FishSpawner.Instance.RemoveItem(collision.gameObject);
-        Destroy(collision.GetComponent<Rybka>().EmitParticles(), 1.0f);
-        Destroy(collision.gameObject, 0.0f);
+            iTween.PunchScale(gameObject, iTween.Hash(
+                "amount", 1.3f * Vector3.one,
+                "time", 0.0f
+            ));
 
-        Time.timeScale += 0.05f;
+            FishSpawner.Instance.RemoveItem(collision.gameObject);
+            Destroy(collision.gameObject);
 
-        Debug.Log("score " + score);
+            Debug.Log("score " + score);
+        }
+        else
+        {
+            Die();
+        }
     }
 
     void OnCollisionEnter2D(Collision2D other)
