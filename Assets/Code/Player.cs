@@ -1,18 +1,26 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 
+using UnityEngine.UI;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-
+    public AudioClip Theme;
+    public AudioClip ScorePlusPlus;
     public Vector2 jumpForce = new Vector2(0, 3);
-    public new Rigidbody2D rigidbody2D;
+    public Text Text;
+    private new Rigidbody2D rigidbody2D;
     private int score;
 
     void Start()
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
+
+        AudioPlayer.Instance.PlayAtMainCamera(Theme,
+            volume: 1.0f,
+            autoDestroy: false
+        ).loop = true;
     }
 
     void Die()
@@ -61,7 +69,14 @@ public class Player : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
+        AudioPlayer.Instance.PlayAtMainCamera(ScorePlusPlus,
+            volume: 1.0f,
+            autoDestroy: true
+        ).loop = false;
+
         score++;
+        Text.text = "Score: " + score;
+
         FishSpawner.Instance.RemoveItem(collision.gameObject);
         Destroy(collision.gameObject);
 

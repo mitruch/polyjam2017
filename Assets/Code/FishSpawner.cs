@@ -39,7 +39,15 @@ public class FishSpawner : MonoBehaviour
     {
         for (int i = 0; i < SpawnedItems.Count; i++)
         {
-            SpawnedItems[i].transform.Translate(new Vector3(-Speed, 0.0f, 0.0f));
+            GameObject item = SpawnedItems[i];
+            item.transform.Translate(new Vector3(-Speed, 0.0f, 0.0f));
+
+            Vector3 WSPos = Camera.main.WorldToViewportPoint(item.transform.position) - 0.5f * Vector3.left;
+            if (WSPos.x < 0.0)
+            {
+                RemoveItem(item);
+                Destroy(item);
+            }
         }
     }
 
