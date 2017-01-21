@@ -23,8 +23,8 @@ GameObject:
   - component: {fileID: 61801657698016772}
   - component: {fileID: 96830665249953158}
   m_Layer: 0
-  m_Name: ItemFish
-  m_TagString: fish
+  m_Name: ItemZdechlaFish
+  m_TagString: wave
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
