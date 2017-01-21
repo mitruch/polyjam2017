@@ -14,19 +14,31 @@ public class Player : MonoBehaviour
     private float Stamina = 1.0f;
     private new Rigidbody2D rigidbody2D;
     private int score;
+    private bool splashOnce;
 
     GameObject FadeGameObject;
 
     void Start()
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
-
+        splashOnce = true;
         AudioPlayer.Instance.PlayAtMainCamera(Theme,
             volume: 1.0f,
             autoDestroy: false
         ).loop = true;
 
         FadeGameObject = iTween.CameraFadeAdd();
+    }
+
+    void Splash()
+    {
+        if(splashOnce)
+        {
+            splashOnce = false;
+            GameObject ItemPrefab = Items[Random.Range(0, Items.Count)];
+            GameObject splash Instantiate(ItemPrefab, transform.position, Quaternion.identity) as GameObject;
+        }
+        Invoke("Die", 0.2f);
     }
 
     void Die()
@@ -60,7 +72,7 @@ public class Player : MonoBehaviour
 
         if (cat_screen_position.y < 0)
         {
-            Die();
+            Splash();
         }
 
         if (Input.GetKeyDown(KeyCode.Space) || Input.touchCount > 0 )
@@ -118,19 +130,21 @@ public class Player : MonoBehaviour
             Text.text = "Score: " + score;
 
             FishSpawner.Instance.RemoveItem(collision.gameObject);
+            Destroy(collision.GetComponent<Rybka>().EmitParticles(), 1.0f);
             Destroy(collision.gameObject);
+            Time.timeScale += 0.05f;
 
             Debug.Log("score " + score);
         }
         else
         {
-            Die();
+            Splash();
         }
     }
 
     void OnCollisionEnter2D(Collision2D other)
     {
         Time.timeScale = 1.0f;
-        Die();
+        Splash();
     }
 }
