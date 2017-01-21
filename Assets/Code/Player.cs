@@ -71,6 +71,7 @@ public class Player : MonoBehaviour
     {
         AudioPlayer.Instance.PlayAtMainCamera(ScorePlusPlus,
             volume: 1.0f,
+            // pitch: Random.Range(0.97f, 1.03f),
             autoDestroy: true
         ).loop = false;
 
