@@ -1,0 +1,46 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class FishSpawner : MonoBehaviour
+{
+
+    public float SpawnInterval = 1.0f; // s
+
+    public Vector2 SpawnArea = new Vector2(2.0f, 2.0f);
+
+    public List<GameObject> Items;
+
+    public List<GameObject> SpawnedItems;
+
+
+    void Start()
+    {
+        InvokeRepeating("SpawnItem", SpawnInterval, SpawnInterval);
+    }
+
+    void Update()
+    {
+        float Speed = 1.0f;
+        for (int i = 0; i < SpawnedItems.Count; i++)
+        {
+            SpawnedItems[i].transform.Translate(new Vector3(-Speed, 0.0f, 0.0f));
+        }
+    }
+
+    void SpawnItem()
+    {
+        GameObject ItemPrefab = Items[Random.Range(0, Items.Count)];
+        Vector3 SpawnPosition = transform.position + new Vector3(
+            (Random.value * 2.0f - 1.0f) * SpawnArea.x,
+            (Random.value * 2.0f - 1.0f) * SpawnArea.y,
+            0.0f
+        );
+
+        GameObject Item = Instantiate(ItemPrefab, SpawnPosition, Quaternion.identity) as GameObject;
+        Item.GetComponent<SpriteRenderer>().color = 4.0f * Random.ColorHSV(0.0f, 1.0f);
+        SpawnedItems.Add(Item);
+
+        Debug.Log("called " + SpawnPosition);
+    }
+}
