@@ -26,6 +26,6 @@ public class Background : MonoBehaviour {
     {
         falka.transform.rotation = Quaternion.Euler(0.0f, 0.0f, Mathf.Sin(intervalSeed * Time.time + startSeed) * 2);
         //falka.transform.position = position + new Vector3(0.0f, Mathf.Sin(Time.time) * 2, 0.0f);
-        Debug.Log("test");
+       // Debug.Log("test");
     }
 }

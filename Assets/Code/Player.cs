@@ -34,7 +34,7 @@ public class Player : MonoBehaviour
     void Update()
     {
         Stamina = Mathf.Clamp01(Stamina - 0.1f * Time.deltaTime);
-        Debug.Log("Stamina: " + Stamina);
+        //Debug.Log("Stamina: " + Stamina);
         if (TailRenderer)
         {
             TailRenderer.material.SetFloat("_Stamina", Stamina);
@@ -90,13 +90,17 @@ public class Player : MonoBehaviour
         Text.text = "Score: " + score;
 
         FishSpawner.Instance.RemoveItem(collision.gameObject);
-        Destroy(collision.gameObject);
+        Destroy(collision.GetComponent<Rybka>().EmitParticles(), 1.0f);
+        Destroy(collision.gameObject, 0.0f);
+
+        Time.timeScale += 0.05f;
 
         Debug.Log("score " + score);
     }
 
     void OnCollisionEnter2D(Collision2D other)
     {
+        Time.timeScale = 1.0f;
         Die();
     }
 }
