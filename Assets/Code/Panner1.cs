@@ -25,7 +25,7 @@ public class Panner1 : MonoBehaviour
 
     void Update()
     {
-        Renderer.material.mainTextureOffset = new Vector2(transform.position.z * Time.time/10.0f, 0.0f);
+        Renderer.material.mainTextureOffset = new Vector2(transform.position.z * Time.time/20.0f, 0.0f);
         //falka.transform.rotation = Quaternion.Euler(0.0f, 0.0f, Mathf.Sin(intervalSeed * Time.time + startSeed) * 5);
         //falka.transform.position = position + new Vector3(0.0f, Mathf.Sin(Time.time) * 2, 0.0f);
     }
