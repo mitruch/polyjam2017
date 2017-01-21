@@ -33,11 +33,12 @@ public class Player : MonoBehaviour
 
     void Splash()
     {
-        if(splashOnce)
+        Vector3 t = transform.position + new Vector3(0.0f, 2.0f, 0.0f);
+        if (splashOnce)
         {
             splashOnce = false;
             GameObject ItemPrefab = Items[Random.Range(0, Items.Count)];
-            GameObject splash = Instantiate(ItemPrefab, transform.position, Quaternion.identity) as GameObject;
+            GameObject splash = Instantiate(ItemPrefab, t, Quaternion.identity) as GameObject;
         }
         Invoke("Die", 0.2f);
     }
