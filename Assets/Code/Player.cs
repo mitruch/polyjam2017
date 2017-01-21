@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
 
     public Vector2 jumpForce = new Vector2(0, 3);
     public new Rigidbody2D rigidbody2D;
+    private int score;
 
     void Start()
     {
@@ -16,6 +17,7 @@ public class Player : MonoBehaviour
 
     void Die()
     {
+        Debug.Log("die collision");
         Application.LoadLevel(Application.loadedLevel);
     }
 
@@ -26,36 +28,44 @@ public class Player : MonoBehaviour
 
         if (cat_screen_position.y < 0)
         {
-            Debug.Log("die collision");
             Die();
         }
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Debug.Log("cat_screen_position" + cat_screen_position);
+            // Debug.Log("cat_screen_position" + cat_screen_position);
             float edge = 1;
             float c_s_pos_y = cat_screen_position.y;
 
             if (c_s_pos_y > 0.75)
             {
-                jumpForce.y = (edge - c_s_pos_y) * 100;
+                jumpForce.y = (edge - c_s_pos_y) * 10;
             }
             else
             {
                 jumpForce.y = 6;
             }
 
-            Debug.Log(jumpForce.y);
+            // Debug.Log(jumpForce.y);
             rigidbody2D.velocity = Vector2.zero;
             rigidbody2D.AddForce(jumpForce, ForceMode2D.Impulse);
             // Debug.Log(score);
+        }
+
+        if (cat_screen_position.y > 1.0)
+        {
+            Vector3 screenHeight = Camera.main.ViewportToWorldPoint(new Vector3(0.0f, 1.0f, 0.0f));
+            rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, -1.0f * 50.0f);
         }
     }
 
     void OnTriggerEnter2D(Collider2D collision)
     {
+        score++;
         FishSpawner.Instance.RemoveItem(collision.gameObject);
         Destroy(collision.gameObject);
+
+        Debug.Log("score " + score);
     }
 
     void OnCollisionEnter2D(Collision2D other)

@@ -130,6 +130,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 58952662223929852, guid: 5dad6100f9d16d84d9be08aa28954c06,
+        type: 2}
+      propertyPath: m_Radius
+      value: 0.59496605
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5dad6100f9d16d84d9be08aa28954c06, type: 2}
   m_IsPrefabParent: 0
@@ -312,11 +317,10 @@ GameObject:
   m_Component:
   - component: {fileID: 2006102813}
   - component: {fileID: 2006102814}
-  - component: {fileID: 2006102815}
   m_Layer: 0
   m_Name: FishSpawner
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -327,7 +331,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2006102812}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 4.91, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -344,25 +348,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf22b1cf7a2ce5343a6c40ae475fb932, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpawnInterval: 1
-  SpawnArea: {x: 8, y: 4}
+  SpawnInterval: 0.5
+  SpawnArea: {x: 2, y: 2}
   Items:
   - {fileID: 1738087298216972, guid: 517583acaac5b7441b3b8e38d22ed2e4, type: 2}
   SpawnedItems: []
---- !u!61 &2006102815
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2006102812}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_Offset: {x: 0.000005722046, y: -1.3892479}
-  serializedVersion: 2
-  m_Size: {x: 22.232693, y: 3.7784958}
+  Speed: 0.1
 --- !u!1001 &2100847035
 Prefab:
   m_ObjectHideFlags: 0

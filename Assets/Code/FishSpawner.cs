@@ -10,11 +10,11 @@ public class FishSpawner : MonoBehaviour
     public Vector2 SpawnArea = new Vector2(2.0f, 2.0f);
     public List<GameObject> Items;
     public List<GameObject> SpawnedItems;
-
+    public float Speed;
 
     public void RemoveItem(GameObject Item)
     {
-        Items.Remove(Item);
+        SpawnedItems.Remove(Item);
     }
 
     void Awake()
@@ -37,7 +37,6 @@ public class FishSpawner : MonoBehaviour
 
     void Update()
     {
-        float Speed = 1.0f;
         for (int i = 0; i < SpawnedItems.Count; i++)
         {
             SpawnedItems[i].transform.Translate(new Vector3(-Speed, 0.0f, 0.0f));
@@ -57,6 +56,6 @@ public class FishSpawner : MonoBehaviour
         Item.GetComponent<SpriteRenderer>().color = 4.0f * Random.ColorHSV(0.0f, 1.0f);
         SpawnedItems.Add(Item);
 
-        Debug.Log("called " + SpawnPosition);
+        // Debug.Log("called " + SpawnPosition);
     }
 }
