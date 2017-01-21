@@ -3,7 +3,8 @@ using System.Collections.Generic;
 
 using UnityEngine;
 
-public class Player : MonoBehaviour {
+public class Player : MonoBehaviour
+{
 
     public Vector2 jumpForce = new Vector2(0, 3);
     public new Rigidbody2D rigidbody2D;
@@ -13,18 +14,13 @@ public class Player : MonoBehaviour {
         rigidbody2D = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
-
-    // Update is called once per frame
-
-
     void Die()
     {
         Application.LoadLevel(Application.loadedLevel);
     }
 
-    void Update () {
-
+    void Update()
+    {
         Vector3 cat_position = transform.position;
         Vector3 cat_screen_position = Camera.main.WorldToViewportPoint(cat_position);
 
@@ -34,10 +30,8 @@ public class Player : MonoBehaviour {
             Die();
         }
 
-
-        if (Input.GetKeyDown("space")) {
-
-          
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
             Debug.Log("cat_screen_position" + cat_screen_position);
             float edge = 1;
             float c_s_pos_y = cat_screen_position.y;
@@ -51,24 +45,21 @@ public class Player : MonoBehaviour {
                 jumpForce.y = 6;
             }
 
-            
             Debug.Log(jumpForce.y);
             rigidbody2D.velocity = Vector2.zero;
-            rigidbody2D.AddForce(jumpForce,ForceMode2D.Impulse);
-           // Debug.Log(score);
+            rigidbody2D.AddForce(jumpForce, ForceMode2D.Impulse);
+            // Debug.Log(score);
         }
-        
-	}
+    }
 
-
-    
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        FishSpawner.Instance.RemoveItem(collision.gameObject);
+        Destroy(collision.gameObject);
+    }
 
     void OnCollisionEnter2D(Collision2D other)
     {
         Die();
     }
-
-   
-
-
 }

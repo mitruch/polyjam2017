@@ -4,15 +4,31 @@ using UnityEngine;
 
 public class FishSpawner : MonoBehaviour
 {
+    public static FishSpawner Instance;
 
     public float SpawnInterval = 1.0f; // s
-
     public Vector2 SpawnArea = new Vector2(2.0f, 2.0f);
-
     public List<GameObject> Items;
-
     public List<GameObject> SpawnedItems;
 
+
+    public void RemoveItem(GameObject Item)
+    {
+        Items.Remove(Item);
+    }
+
+    void Awake()
+    {
+        if (Instance)
+        {
+            Debug.Log("Multiple FishSpawner singletons");
+            Destroy(this);
+        }
+        else
+        {
+            Instance = this;
+        }
+    }
 
     void Start()
     {
