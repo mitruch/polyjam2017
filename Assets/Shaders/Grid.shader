@@ -3,6 +3,7 @@
 	Properties
 	{
 		_MainTex ("Texture", 2D) = "white" {}
+		_Stamina("Stamina", Float) = 1.0
 	}
 	SubShader
 	{
@@ -34,6 +35,7 @@
 
 			sampler2D _MainTex;
 			float4 _MainTex_ST;
+			float _Stamina;
 			
 			v2f vert (appdata v)
 			{
@@ -57,6 +59,7 @@
 				col.x = frac(8.0 * i.uv).y * pow(2.0 * i.uv.y, 0.2);
 				// // o.vertex.y -= 0.1 * sin(1000.0 * o.vertex.x + 500.0 * _Time.x);
 				col.x *= i.uv.x;
+				col *= 2.0 * _Stamina;
 				// apply fog
 				UNITY_APPLY_FOG(i.fogCoord, col);
 				return col;
