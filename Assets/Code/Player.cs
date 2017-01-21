@@ -22,6 +22,8 @@ public class Player : MonoBehaviour
     void Start()
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
+        Time.timeScale = 1.0f;
+
         splashOnce = true;
         AudioPlayer.Instance.PlayAtMainCamera(Theme,
             volume: 1.0f,
@@ -146,7 +148,6 @@ public class Player : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        Time.timeScale = 1.0f;
         Splash();
     }
 }
