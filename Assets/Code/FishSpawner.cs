@@ -31,12 +31,13 @@ public class FishSpawner : MonoBehaviour
     {
         GameObject ItemPrefab = Items[Random.Range(0, Items.Count)];
         Vector3 SpawnPosition = new Vector3(
-            (Random.value * 2.0f - 0.5f) * SpawnArea.x,
-            (Random.value * 2.0f - 0.5f) * SpawnArea.y,
+            (Random.value * 2.0f - 1.0f) * SpawnArea.x,
+            (Random.value * 2.0f - 1.0f) * SpawnArea.y,
             0.0f
         );
 
         GameObject Item = Instantiate(ItemPrefab, SpawnPosition, Quaternion.identity) as GameObject;
+        Item.GetComponent<SpriteRenderer>().color = Random.ColorHSV(0.0f, 1.0f);
         SpawnedItems.Add(Item);
 
         Debug.Log("called " + SpawnPosition);
