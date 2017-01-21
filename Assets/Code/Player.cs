@@ -49,7 +49,7 @@ public class Player : MonoBehaviour
     void Update()
     {
         Stamina = Mathf.Clamp01(Stamina - 0.1f * Time.deltaTime);
-        Debug.Log("Stamina: " + Stamina);
+        //Debug.Log("Stamina: " + Stamina);
         if (TailRenderer)
         {
             TailRenderer.material.SetFloat("_Stamina", Stamina);
@@ -130,6 +130,7 @@ public class Player : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D other)
     {
+        Time.timeScale = 1.0f;
         Die();
     }
 }
