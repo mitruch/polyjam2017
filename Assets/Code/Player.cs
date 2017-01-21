@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
     private new Rigidbody2D rigidbody2D;
     private int score;
     private bool splashOnce;
+    public List<GameObject> Items;
 
     GameObject FadeGameObject;
 
@@ -36,7 +37,7 @@ public class Player : MonoBehaviour
         {
             splashOnce = false;
             GameObject ItemPrefab = Items[Random.Range(0, Items.Count)];
-            GameObject splash Instantiate(ItemPrefab, transform.position, Quaternion.identity) as GameObject;
+            GameObject splash = Instantiate(ItemPrefab, transform.position, Quaternion.identity) as GameObject;
         }
         Invoke("Die", 0.2f);
     }
