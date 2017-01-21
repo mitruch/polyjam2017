@@ -63,7 +63,7 @@ public class Player : MonoBehaviour
             Die();
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) || Input.touchCount > 0 )
         {
             // Debug.Log("cat_screen_position" + cat_screen_position);
             float edge = 1;
@@ -86,7 +86,7 @@ public class Player : MonoBehaviour
 
             iTween.PunchPosition(Camera.main.gameObject, iTween.Hash(
                 "name", "shake" + Time.frameCount,
-                "amount", 1.0f * Vector3.down,
+                "amount", 0.1f * Vector3.down,
                 "time", 2.0f
             ));
         }
@@ -100,6 +100,11 @@ public class Player : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
+        iTween.PunchScale(gameObject, iTween.Hash(
+            "amount", 1.5f * Vector3.one,
+            "time", 0.5f
+        ));
+
         if (collision.gameObject.tag == "fish")
         {
             AudioPlayer.Instance.PlayAtMainCamera(ScorePlusPlus,
@@ -111,11 +116,6 @@ public class Player : MonoBehaviour
             Stamina = Mathf.Clamp01(Stamina + 1.0f);
             score++;
             Text.text = "Score: " + score;
-
-            iTween.PunchScale(gameObject, iTween.Hash(
-                "amount", 1.3f * Vector3.one,
-                "time", 0.0f
-            ));
 
             FishSpawner.Instance.RemoveItem(collision.gameObject);
             Destroy(collision.gameObject);
