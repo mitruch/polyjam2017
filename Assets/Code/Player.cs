@@ -7,7 +7,6 @@ public class Player : MonoBehaviour {
 
     public Vector2 jumpForce = new Vector2(0, 3);
     public new Rigidbody2D rigidbody2D;
-    int score = 0;
 
     void Start()
     {
@@ -21,7 +20,6 @@ public class Player : MonoBehaviour {
 
     void Die()
     {
-        score = 0;
         Application.LoadLevel(Application.loadedLevel);
     }
 
@@ -67,26 +65,10 @@ public class Player : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        {
-            Debug.Log("die collision" + score);
-            Die();
-
-        }
-
+        Die();
     }
 
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.gameObject.tag == "fish")
-        {
-            score++;
-            Debug.Log("fish collision" + score);
-        //    Destroy(other);
-            DestroyObject(other.gameObject);
-        }
-    }
-
-
+   
 
 
 }
