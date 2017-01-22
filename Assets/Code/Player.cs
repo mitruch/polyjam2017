@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 using UnityEngine.UI;
 using UnityEngine;
+using System;
 
 public class Player : MonoBehaviour
 {
@@ -40,7 +41,7 @@ public class Player : MonoBehaviour
         if (splashOnce)
         {
             splashOnce = false;
-            GameObject ItemPrefab = Items[Random.Range(0, Items.Count)];
+            GameObject ItemPrefab = Items[UnityEngine.Random.Range(0, Items.Count)];
             GameObject splash = Instantiate(ItemPrefab, t, Quaternion.identity) as GameObject;
         }
         Invoke("Die", 0.2f);
@@ -140,9 +141,16 @@ public class Player : MonoBehaviour
                "time", 0.5f
              ));
 
-            FishSpawner.Instance.RemoveItem(collision.gameObject);
-            Destroy(collision.GetComponent<Rybka>().EmitParticles(), 1.0f);
-            Destroy(collision.gameObject);
+            try
+            {
+                FishSpawner.Instance.RemoveItem(collision.gameObject);
+                Destroy(collision.GetComponent<Rybka>().EmitParticles(), 1.0f);
+                Destroy(collision.gameObject);
+            }
+            catch (Exception e) {
+                Die();
+            }
+
             Time.timeScale += 0.05f;
 
             if (collision.gameObject.tag == "gold") {
