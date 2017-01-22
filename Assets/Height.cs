@@ -17,7 +17,7 @@ public class Height : MonoBehaviour {
     {
         float x = Time.time/5;
         float height = Mathf.Sin(x) + Mathf.Cos(x) + Mathf.Cos(x * 3) + Mathf.Acos(Mathf.Cos(x / 3));
-        height = height / 2;
+        height = (height / 2.0f) - 1.0f;
         falka.transform.position = position + new Vector3(0.0f, height * 2, 0.0f);
     }
 }
