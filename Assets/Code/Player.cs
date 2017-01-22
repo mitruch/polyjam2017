@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public Renderer TailRenderer;
+    public ParticleSystem Tail;
     public AudioClip Theme;
     public AudioClip ScorePlusPlus;
     public Vector2 jumpForce = new Vector2(0, 3);
@@ -66,9 +66,10 @@ public class Player : MonoBehaviour
     {
         Stamina = Mathf.Clamp01(Stamina - 0.1f * Time.deltaTime);
         //Debug.Log("Stamina: " + Stamina);
-        if (TailRenderer)
+        if (Tail)
         {
-            TailRenderer.material.SetFloat("_Stamina", Stamina);
+            Tail.playbackSpeed = Mathf.Lerp(1.0f, 10.0f, Stamina);
+            Tail.startSize = Mathf.Lerp(0.0f, 1.0f, Stamina);
         }
 
         Vector3 cat_position = transform.position;
@@ -79,7 +80,7 @@ public class Player : MonoBehaviour
             Splash();
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) || Input.touchCount > 0 )
+        if (Input.GetKeyDown(KeyCode.Space) || Input.touchCount > 0)
         {
             // Debug.Log("cat_screen_position" + cat_screen_position);
             float edge = 1;
