@@ -13,6 +13,6 @@ public class Aberacja : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-        aberacja.chromaticAberration.amount = Mathf.Min(Mathf.Pow(Time.timeScale,5), 100.0f)*Mathf.Sin(Time.time);
+        aberacja.chromaticAberration.amount = Mathf.Min(Mathf.Pow(Time.timeScale,4), 120.0f)*Mathf.Sin(Time.time);
 	}
 }
