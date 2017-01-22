@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 using UnityEngine.UI;
 using UnityEngine;
+using System;
 
 public class Player : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class Player : MonoBehaviour
     private int score;
     private bool splashOnce;
     public List<GameObject> Items;
+    private float saved_time;
 
     GameObject FadeGameObject;
 
@@ -39,7 +41,7 @@ public class Player : MonoBehaviour
         if (splashOnce)
         {
             splashOnce = false;
-            GameObject ItemPrefab = Items[Random.Range(0, Items.Count)];
+            GameObject ItemPrefab = Items[UnityEngine.Random.Range(0, Items.Count)];
             GameObject splash = Instantiate(ItemPrefab, t, Quaternion.identity) as GameObject;
         }
         Invoke("Die", 0.2f);
@@ -122,7 +124,7 @@ public class Player : MonoBehaviour
             "time", 0.5f
         ));
 
-        if (collision.gameObject.tag == "fish")
+        if (collision.gameObject.tag == "fish" || collision.gameObject.tag=="gold")
         {
             AudioPlayer.Instance.PlayAtMainCamera(ScorePlusPlus,
                 volume: 1.0f,
@@ -134,17 +136,42 @@ public class Player : MonoBehaviour
             score++;
             Text.text = "Score: " + score;
 
-            FishSpawner.Instance.RemoveItem(collision.gameObject);
-            Destroy(collision.GetComponent<Rybka>().EmitParticles(), 1.0f);
-            Destroy(collision.gameObject);
+            iTween.PunchScale(Text.gameObject, iTween.Hash(
+               "amount", 1.5f * Vector3.one,
+               "time", 0.5f
+             ));
+
+            try
+            {
+                FishSpawner.Instance.RemoveItem(collision.gameObject);
+                Destroy(collision.GetComponent<Rybka>().EmitParticles(), 1.0f);
+                Destroy(collision.gameObject);
+            }
+            catch (Exception e) {
+                Die();
+            }
+
             Time.timeScale += 0.05f;
 
-            Debug.Log("score " + score);
+            if (collision.gameObject.tag == "gold") {
+                saved_time = Time.timeScale;
+                Time.timeScale *= 2.0f;
+
+                Invoke("addgolden",2.0f);
+            }
+
+                Debug.Log("score " + score);
         }
         else
         {
             Splash();
         }
+    }
+
+    void addgolden()
+    {
+        Time.timeScale = saved_time;
+
     }
 
     void OnCollisionEnter2D(Collision2D other)
