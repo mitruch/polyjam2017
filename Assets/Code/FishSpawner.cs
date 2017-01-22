@@ -54,7 +54,11 @@ public class FishSpawner : MonoBehaviour
 
     void SpawnItem()
     {
-        int index = Random.value < 0.2f ? 1 : 0;
+        int goodfish = Random.value < 0.2f ? 1 : 0;
+        int index = goodfish;
+        if (goodfish == 0) {
+            index = Random.value < 0.2f ? 2 : 0;
+        }
         GameObject ItemPrefab = Items[index];
         Vector3 SpawnPosition = transform.position + new Vector3(
             (Random.value * 2.0f - 1.0f) * SpawnArea.x,
@@ -65,12 +69,12 @@ public class FishSpawner : MonoBehaviour
         GameObject Item = Instantiate(ItemPrefab, SpawnPosition, Quaternion.identity) as GameObject;
         if (index == 0)
         {
-            Item.GetComponent<SpriteRenderer>().color = Color.green + Random.ColorHSV(-0.5f, 0.5f);
+            Item.GetComponent<SpriteRenderer>().color = Color.green + Random.ColorHSV(-0.2f, 0.2f);
             // Item.GetComponent<SpriteRenderer>().color = 4.0f * Random.ColorHSV(0.0f, 1.0f);
         }
         else
         {
-            Item.GetComponent<SpriteRenderer>().color = Color.red + Random.ColorHSV(-0.5f, 0.5f);
+            Item.GetComponent<SpriteRenderer>().color = Color.red + Random.ColorHSV(-0.2f, 0.2f);
         }
 
         SpawnedItems.Add(Item);
