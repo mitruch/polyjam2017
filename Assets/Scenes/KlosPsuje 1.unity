@@ -297,6 +297,22 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 197034935}
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &252043022 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1534300699756172, guid: 5be538dd2c6da404a9e53a03d7bfb594,
+    type: 2}
+  m_PrefabInternal: {fileID: 1736508480}
+--- !u!114 &252043023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 252043022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 591904e4f9224594db9d5d1d01be57f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &288929979
 GameObject:
   m_ObjectHideFlags: 0
@@ -1434,6 +1450,11 @@ Prefab:
     - target: {fileID: 1534300699756172, guid: 5be538dd2c6da404a9e53a03d7bfb594, type: 2}
       propertyPath: m_Name
       value: Main Camera (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114198159152345356, guid: 5be538dd2c6da404a9e53a03d7bfb594,
+        type: 2}
+      propertyPath: chromaticAberration.enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5be538dd2c6da404a9e53a03d7bfb594, type: 2}

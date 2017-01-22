@@ -19,11 +19,14 @@ public class Player : MonoBehaviour
     private bool splashOnce;
     public List<GameObject> Items;
     private float saved_time;
+    public static bool isWasted = false;
 
     GameObject FadeGameObject;
 
     void Start()
     {
+        isWasted = false;
+
         rigidbody2D = GetComponent<Rigidbody2D>();
         Time.timeScale = 1.0f;
 
@@ -52,6 +55,8 @@ public class Player : MonoBehaviour
     {
         Time.timeScale = 0.1f;
         Wasted.color = Color.red;
+
+        isWasted = true;
 
         // iTween.ColorTo(Wasted, iTween.Hash());
 
