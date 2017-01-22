@@ -15,7 +15,7 @@ public class Player : MonoBehaviour
     public Text Text;
     private float Stamina = 1.0f;
     private new Rigidbody2D rigidbody2D;
-    private int score;
+    static public int score;
     private bool splashOnce;
     public List<GameObject> Items;
     private float saved_time;
