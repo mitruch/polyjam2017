@@ -7,6 +7,7 @@ using System;
 
 public class Player : MonoBehaviour
 {
+    public Text Wasted;
     public ParticleSystem Tail;
     public AudioClip Theme;
     public AudioClip ScorePlusPlus;
@@ -49,12 +50,19 @@ public class Player : MonoBehaviour
 
     void Die()
     {
+        Time.timeScale = 0.1f;
+        Wasted.color = Color.red;
+
+        // iTween.ColorTo(Wasted, iTween.Hash());
+
         iTween.CameraFadeTo(iTween.Hash(
             "amount", 0.5f,
-            "time", 0.2f,
-            "oncomplete", "RestartLevel",
-            "oncompletetarget", gameObject
+            "time", 0.8f
+            //"oncomplete", "RestartLevel",
+            // "oncompletetarget", gameObject
         ));
+
+        Invoke("RestartLevel", 0.5f);
 
         Debug.Log("die collision");
     }
@@ -141,21 +149,21 @@ public class Player : MonoBehaviour
                "time", 0.5f
              ));
 
-            try
-            {
+            //try
+            //{
                 FishSpawner.Instance.RemoveItem(collision.gameObject);
                 Destroy(collision.GetComponent<Rybka>().EmitParticles(), 1.0f);
                 Destroy(collision.gameObject);
-            }
-            catch (Exception e) {
-                Die();
-            }
+           //| }
+           // catch (Exception e) {
+           //     Die();
+           // }
 
             Time.timeScale += 0.05f;
 
             if (collision.gameObject.tag == "gold") {
                 saved_time = Time.timeScale;
-                Time.timeScale *= 2.0f;
+                Time.timeScale *= 1.5f;
 
                 Invoke("addgolden",2.0f);
             }

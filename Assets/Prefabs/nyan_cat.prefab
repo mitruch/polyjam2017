@@ -40,6 +40,7 @@ GameObject:
   - component: {fileID: 4980836490683096}
   - component: {fileID: 198387934592593482}
   - component: {fileID: 199124361334447502}
+  - component: {fileID: 114927054311518650}
   m_Layer: 0
   m_Name: Particle System
   m_TagString: Untagged
@@ -54,7 +55,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1165435320909144}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.25, y: 0, z: 0}
+  m_LocalPosition: {x: -4.25, y: 3.41, z: 0}
   m_LocalScale: {x: 0.7250001, y: 1, z: 1}
   m_Children:
   - {fileID: 4980836490683096}
@@ -119,12 +120,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 472fc1f13ed6f954b9b628b37e2ea623, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TailRenderer: {fileID: 0}
+  Wasted: {fileID: 0}
+  Tail: {fileID: 198387934592593482}
   Theme: {fileID: 8300000, guid: e2e3197162d1f284f924d20ed1f5d353, type: 3}
   ScorePlusPlus: {fileID: 8300000, guid: f8cea2c37a3bcdf48bea33e010efcf8f, type: 3}
   jumpForce: {x: 0, y: 300}
   Text: {fileID: 0}
-  Items: []
+  Items:
+  - {fileID: 1000011797152326, guid: acf39d9f4addf294d93fa56fa373961b, type: 2}
+--- !u!114 &114927054311518650
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1609958796954482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a19a5935ab40ef4a8363b32eb6b6454, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!198 &198387934592593482
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -135,7 +149,7 @@ ParticleSystem:
   lengthInSec: 1
   speed: 1
   looping: 1
-  prewarm: 1
+  prewarm: 0
   playOnAwake: 1
   autoRandomSeed: 1
   startDelay:
@@ -180,7 +194,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1832552996
+  randomSeed: 585518494
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -353,7 +367,7 @@ ParticleSystem:
         m_NumColorKeys: 2
         m_NumAlphaKeys: 2
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.8235294, g: 0, b: 1, a: 1}
+      maxColor: {r: 0.2, g: 0, b: 1, a: 1}
       minMaxState: 0
     startSize:
       scalar: 1
@@ -2843,7 +2857,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 1dede4df88c8bc542bdebb1f20292a85, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5deec16af21586546b2288a78107669d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
