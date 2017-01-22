@@ -37,6 +37,8 @@ public class Player : MonoBehaviour
         ).loop = true;
 
         FadeGameObject = iTween.CameraFadeAdd();
+
+        score = 0;
     }
 
     void Splash()
@@ -55,6 +57,8 @@ public class Player : MonoBehaviour
     {
         Time.timeScale = 0.1f;
         Wasted.color = Color.red;
+
+        GetComponent<SpriteRenderer>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
 
         isWasted = true;
 
@@ -132,6 +136,11 @@ public class Player : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
+        if (isWasted)
+        {
+            return;
+        }
+
         iTween.PunchScale(gameObject, iTween.Hash(
             "amount", 1.5f * Vector3.one,
             "time", 0.5f

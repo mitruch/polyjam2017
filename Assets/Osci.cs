@@ -10,6 +10,7 @@ public class Osci : MonoBehaviour {
     void Start () {
         player = GameObject.FindWithTag("Player").GetComponent<Player>();
         particles = GetComponent<ParticleSystem>();
+        particles.emissionRate = 0.0f;
     }
 	
 	// Update is called once per frame
