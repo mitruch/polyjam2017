@@ -134,6 +134,11 @@ public class Player : MonoBehaviour
             score++;
             Text.text = "Score: " + score;
 
+            iTween.PunchScale(Text.gameObject, iTween.Hash(
+               "amount", 1.5f * Vector3.one,
+               "time", 0.5f
+       ));
+
             FishSpawner.Instance.RemoveItem(collision.gameObject);
             Destroy(collision.GetComponent<Rybka>().EmitParticles(), 1.0f);
             Destroy(collision.gameObject);

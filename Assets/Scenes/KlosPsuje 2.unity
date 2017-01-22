@@ -348,8 +348,13 @@ MonoBehaviour:
     m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 1
+<<<<<<< Updated upstream
     m_MinSize: 10
     m_MaxSize: 300
+=======
+    m_MinSize: 0
+    m_MaxSize: 60
+>>>>>>> Stashed changes
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -1573,7 +1578,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf22b1cf7a2ce5343a6c40ae475fb932, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< Updated upstream
   SpawnInterval: 2
+=======
+  SpawnInterval: 3
+>>>>>>> Stashed changes
   SpawnArea: {x: 2, y: 2}
   Items:
   - {fileID: 1738087298216972, guid: 517583acaac5b7441b3b8e38d22ed2e4, type: 2}
